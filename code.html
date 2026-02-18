@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resortly Messages - Variant 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "resortly-teal": "#2F8F8B",
+                "resortly-light-blue": "#A8DADC",
+                "resortly-beige": "#F2EFEA",
+                "resortly-text": "#2E2E2E",
+                "resortly-teal-light": "rgba(47, 143, 139, 0.1)",
+                "sidebar-bg": "#FFFFFF",
+                "active-item": "rgba(47, 143, 139, 0.1)",
+                "bubble-other": "#E8E6E1", 
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"],
+                "sans": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-resortly-beige text-resortly-text antialiased overflow-hidden font-display">
+<div class="flex h-screen w-full">
+<aside class="w-20 flex flex-col items-center py-6 bg-white border-r border-slate-200 z-20 text-slate-500 shadow-sm">
+<div class="mb-10 text-resortly-teal">
+<span class="material-icons-round text-3xl">spa</span>
+</div>
+<nav class="flex flex-col gap-8 flex-1 w-full px-2">
+<a class="p-3 rounded-xl flex justify-center text-slate-400 hover:text-resortly-teal hover:bg-resortly-teal-light transition-colors" href="#">
+<span class="material-icons-round">dashboard</span>
+</a>
+<a class="p-3 rounded-xl flex justify-center text-slate-400 hover:text-resortly-teal hover:bg-resortly-teal-light transition-colors" href="#">
+<span class="material-icons-round">event</span>
+</a>
+<div class="relative w-full flex justify-center">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-resortly-teal rounded-r-full"></div>
+<a class="p-3 w-full flex justify-center rounded-xl bg-resortly-teal-light text-resortly-teal" href="#">
+<span class="material-icons-round">chat_bubble</span>
+</a>
+</div>
+<a class="p-3 rounded-xl flex justify-center text-slate-400 hover:text-resortly-teal hover:bg-resortly-teal-light transition-colors" href="#">
+<span class="material-icons-round">calendar_today</span>
+</a>
+<a class="p-3 rounded-xl flex justify-center text-slate-400 hover:text-resortly-teal hover:bg-resortly-teal-light transition-colors" href="#">
+<span class="material-icons-round">settings</span>
+</a>
+</nav>
+<div class="mt-auto">
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover border-2 border-slate-100" data-alt="User profile avatar close up photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Pm4fHM7_9kzoKfN8AJ5zUZpOG-X9A_zHXgUX4ONDlIJUkEZL5VmlZ_NgLeSxN_xEBnndsR0t0zmsMGAO_h8_x9ZJKqXPQIiic0OOCHogLwCje-TetmgNguwGZW0uxnfli5MTU1fOCTLgnqAo7RI6bKpJiacV-K9ulvDlKVqzFdSmt5z5j3vygjikJmGn89M4fIlZ2fXdB2pWTP1mshdrEeHHdQ8_056vYW4mkQDOryhy5LQ6lvOuP-MDA0xHFfcv5fWa-JuAvEV8"/>
+</div>
+</aside>
+<section class="w-80 md:w-96 flex flex-col bg-white border-r border-slate-200">
+<div class="p-6">
+<h1 class="text-xl font-bold mb-4 text-resortly-text">Messages</h1>
+<div class="relative">
+<span class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-resortly-teal/50 text-resortly-text placeholder-slate-400" placeholder="Search events or people..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="px-4 mb-6">
+<h2 class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Events</h2>
+<div class="space-y-1">
+<button class="w-full flex items-center gap-3 p-3 bg-resortly-teal-light rounded-lg border-l-4 border-resortly-teal">
+<div class="w-10 h-10 bg-white text-resortly-teal flex items-center justify-center rounded-lg shadow-sm">
+<span class="material-icons-round">groups</span>
+</div>
+<div class="flex-1 text-left min-w-0">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm truncate text-resortly-text">Summer Retreat 2024</span>
+<span class="text-[10px] text-slate-500">14:20</span>
+</div>
+<p class="text-xs text-slate-600 truncate">Sarah: Please check the equipment list...</p>
+</div>
+</button>
+<button class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition-colors group">
+<div class="w-10 h-10 bg-slate-100 text-slate-500 flex items-center justify-center rounded-lg">
+<span class="material-icons-round">school</span>
+</div>
+<div class="flex-1 text-left min-w-0">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm truncate text-resortly-text">Staff Orientation</span>
+<span class="text-[10px] text-slate-400">Yesterday</span>
+</div>
+<p class="text-xs text-slate-500 truncate">Mark: Setup complete in Hall A</p>
+</div>
+</button>
+</div>
+</div>
+<div class="px-4">
+<h2 class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Direct Messages</h2>
+<div class="space-y-1">
+<button class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+<div class="relative">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover" data-alt="Female manager profile professional portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF5Rfrr0BlSEdByTAExRul6ukCrVpphFpn3o0_QiB61_a_hVIDLnnnte85z1nr_XjIXmY0Fuk7te1jZaGLL_8FOOar_HHqYTGyKFmSDDaA3P4QVnCZbI6TGZesZcUNIhjF9EEYFNJZ6qOqpQMyYFBBfLJShcfqBiLwEedkVqnRJGNY3H-XKe0E7-AsgwaJpXXhB87QrMaTqkqX4KBEN4N5l44elHYvCfrUg8DAs6c2Rhgek2bt8sBu_4XtxlOgLYSVG56JH81iNRW0"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 text-left min-w-0">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm truncate text-resortly-text">Sarah Jenkins (Manager)</span>
+<span class="text-[10px] text-slate-400">1h</span>
+</div>
+<p class="text-xs text-slate-500 truncate">Did you receive the updated floor plan?</p>
+</div>
+</button>
+<button class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+<div class="relative">
+<img alt="Mark Thompson" class="w-10 h-10 rounded-full object-cover" data-alt="Male staff member headshot with smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4R-x9nqgxjxEVAAUzyEhetnltcveSghr3rXj9r1WGLq0AX9owxljLalUlMygue3_ME02jvXUCOPGLyOOYMfzDi5HLHw58ek9QakNnr5aqpSsyEmjSH5vv2-jUo3AnUHS4lpsbaipC1Ata4m3fmoZRgay5aeAh_6_5avdNXWGZYv122y_GHcoUVis87gklJvVbfMHYxiPoU7tb1n4tOIrPmP84Dthg4-1KT_HWLPk0lLZhnwNcMkMb6pW2KWOPLKq4XXs8qe08mgbw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-slate-300 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 text-left min-w-0">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm truncate text-resortly-text">Mark Thompson (Staff)</span>
+<span class="text-[10px] text-slate-400">3h</span>
+</div>
+<p class="text-xs text-slate-500 truncate">I'll be there in 15 minutes.</p>
+</div>
+</button>
+<button class="w-full flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+<div class="relative">
+<img alt="Emily Chen" class="w-10 h-10 rounded-full object-cover" data-alt="Female executive looking forward portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ZVU1qOcxusgxpYDJ5Wjf06Yg5s9k41BC9k4URMKMOTs3J5uSRIJqZXja2P0IvEi4rCdNNXPQ7du8bQaM3mMN-AGyx2TKfKAesmrAxHWb15sSpsGEr8uAlD3CebDclKOuLvnPG556pupjYtdf2IvzHFpp6sytshg42Ar-zpMIA08h8C8cHaG-NwHB4n7uqGK1jEIeahUoIpvYbT7l_N0k5jxvGAFNfStLo8evpNSD9Xepj68P2ocPaWAZbf2e7maC1fMqXiYC0WV3"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 text-left min-w-0">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm truncate text-resortly-text">Emily Chen (Manager)</span>
+<span class="text-[10px] text-slate-400">Yesterday</span>
+</div>
+<p class="text-xs text-slate-500 truncate">Great job on the venue walkthrough.</p>
+</div>
+</button>
+</div>
+</div>
+</div>
+</section>
+<main class="flex-1 flex flex-col bg-resortly-beige">
+<header class="h-20 border-b border-slate-200 flex items-center justify-between px-8 bg-white/95 backdrop-blur-sm z-10 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-resortly-teal/10 text-resortly-teal flex items-center justify-center rounded-lg">
+<span class="material-icons-round">groups</span>
+</div>
+<div>
+<h2 class="font-bold text-lg text-resortly-text">Summer Retreat 2024</h2>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<p class="text-xs text-slate-500">12 participants • 4 online</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
+<span class="material-icons-round">search</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
+<span class="material-icons-round">person_add</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
+<span class="material-icons-round">more_vert</span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-6">
+<div class="flex items-center gap-4 my-8">
+<div class="flex-1 h-px bg-slate-300"></div>
+<span class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Today, Oct 12</span>
+<div class="flex-1 h-px bg-slate-300"></div>
+</div>
+<div class="flex gap-4 max-w-2xl">
+<img alt="Sarah" class="w-9 h-9 rounded-full object-cover shrink-0" data-alt="Female manager profile professional portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWBHST7UdUe9u7OnSaMCgShwij1mJdr8KSS7XYPZYQ1zQShgIf2qGxa2jtPTmoD-OVKSPsBHhaUC_7AWIj1urKrk_CojH846KjEiYseoGCrmIYA_Tz2EOx1PgnCgRp5_tCkkIiLBve-o6VZ2tWRPMTIaKfN-rulHzDjrSUtHzZZsz5s3umBwyUBfbBmrYoqW7P18N-1F764_-8rY2Qi24371ElmC6vSuF3P_2Ty-Pk-BcbJD8852aZCmU1cT2AzGTcCcnJzOhK6cog"/>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-bold text-sm text-resortly-text">Sarah Jenkins</span>
+<span class="text-[10px] text-slate-500">14:15</span>
+</div>
+<div class="bg-bubble-other rounded-xl rounded-tl-none p-4 text-sm text-resortly-text shadow-sm border border-slate-200">
+                            Hi team, everyone ready for the main stage tech check? We're starting in 20 minutes. Please make sure the wireless mics are fully charged and the slide deck is pre-loaded on the main PC.
+                        </div>
+</div>
+</div>
+<div class="flex gap-4 max-w-2xl">
+<img alt="Mark" class="w-9 h-9 rounded-full object-cover shrink-0" data-alt="Male staff member headshot with smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgealGuzNJuDqOQurkrqK0ulElylJUeoYyGnurdbcxOGNnbr3dDfOWbcYjOZKpw0iSVnStzLhK48r1i29ihiIfDVL1ifw1YHST0v-SAgZ0Qtslh3znPMIoe820Aa982f_un2uqzujLhBJH66So70RHt8D6uDlRDsP1uJ6a8x0HqApiwcCle8_ykHOs7Ko9IrTsizakZDt6PUmkrDwCfaAYbIME7CNXdcqNuvFd2JN_Jmr1D4dvFk_1sagCiXnVIKcgj9ta24zFBzlK"/>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-bold text-sm text-resortly-text">Mark Thompson</span>
+<span class="text-[10px] text-slate-500">14:18</span>
+</div>
+<div class="bg-bubble-other rounded-xl rounded-tl-none p-4 text-sm text-resortly-text shadow-sm border border-slate-200">
+                            Setup complete in Hall A. All 4 mics tested and confirmed. Slide deck is loaded and we've verified the video links are working.
+                        </div>
+</div>
+</div>
+<div class="flex gap-4 justify-end">
+<div class="max-w-2xl">
+<div class="flex items-baseline justify-end gap-2 mb-1">
+<span class="text-[10px] text-slate-500">14:20</span>
+<span class="font-bold text-sm text-resortly-text">You</span>
+</div>
+<div class="bg-resortly-teal text-white rounded-xl rounded-tr-none p-4 text-sm shadow-md shadow-resortly-teal/20">
+                            Acknowledged. I'm just finishing up the signage verification in the lobby and will head over to the main stage for the tech check now. See you both there.
+                        </div>
+<div class="flex justify-end mt-1">
+<span class="material-icons-round text-resortly-teal text-xs">done_all</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4 max-w-2xl">
+<img alt="Sarah" class="w-9 h-9 rounded-full object-cover shrink-0" data-alt="Female manager profile professional portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApF_nH97DwVIOWIihMX_PrCle10xZp65e-YG-hmKPBbVtpvBLtBqrCtNRn44myg3JBYoo-QefqI_Evzdthoh_CVaVEiiJNIWz0hP3rOE-axhBTkNuF0l7lbQ887t_sOrP6P4sHoQEJXfJ-7Ogs0z6H_XL-fru828HzhYO-fe0eHve3JFCHPXjnG8IgOEy0VBvM4YJYWUHOZYKhrKmkiWwZ-6SeTfZTSQkCGgnVAvPHYsnbBm7pBU3UUL6QkKB5TeNOyqdp2VkiG1R_"/>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-bold text-sm text-resortly-text">Sarah Jenkins</span>
+<span class="text-[10px] text-slate-500">14:22</span>
+</div>
+<div class="bg-bubble-other rounded-xl rounded-tl-none p-3 space-y-3 shadow-sm border border-slate-200">
+<p class="text-sm text-resortly-text">Here's the latest seating chart for the VIP section just in case.</p>
+<div class="flex items-center gap-3 bg-white p-2 rounded-lg border border-slate-200">
+<div class="w-10 h-10 bg-red-50 text-red-600 flex items-center justify-center rounded">
+<span class="material-icons-round">picture_as_pdf</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-semibold truncate text-resortly-text">VIP_Seating_v2.pdf</p>
+<p class="text-[10px] text-slate-400">1.2 MB • PDF</p>
+</div>
+<button class="p-1 hover:bg-slate-100 rounded text-slate-400">
+<span class="material-icons-round text-sm">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="p-6 bg-white border-t border-slate-200">
+<div class="max-w-4xl mx-auto flex items-end gap-3 bg-white border border-slate-200 rounded-xl p-2 px-3 shadow-sm focus-within:ring-2 focus-within:ring-resortly-teal/30 focus-within:border-resortly-teal/50 transition-all">
+<div class="flex items-center gap-1 mb-1">
+<button class="p-2 hover:bg-slate-50 rounded-lg text-slate-400 transition-colors">
+<span class="material-icons-round text-lg">add_circle_outline</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-lg text-slate-400 transition-colors">
+<span class="material-icons-round text-lg">sentiment_satisfied_alt</span>
+</button>
+</div>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 py-3 text-sm resize-none max-h-32 custom-scrollbar text-resortly-text placeholder-slate-400" placeholder="Type your message here..." rows="1"></textarea>
+<div class="flex items-center gap-1 mb-1">
+<button class="p-2 hover:bg-slate-50 rounded-lg text-slate-400 transition-colors">
+<span class="material-icons-round text-lg">mic_none</span>
+</button>
+<button class="bg-resortly-teal text-white p-2.5 rounded-lg shadow-lg shadow-resortly-teal/20 hover:bg-resortly-teal/90 transition-all active:scale-95">
+<span class="material-icons-round text-lg">send</span>
+</button>
+</div>
+</div>
+<div class="mt-2 text-center">
+<p class="text-[10px] text-slate-400">Press Enter to send, Shift + Enter for new line</p>
+</div>
+</footer>
+</main>
+</div>
+
+<script>
+
+  // code uses tailwind please dont touch.
+   
+   // --- 1. DATA (Meets MCO Requirement: 5 Sample Data Items) ---
+    const chatDatabase = {
+        "Summer Retreat 2024": {
+            status: "12 participants • 4 online",
+            messages: [
+                { text: "Welcome everyone! This is the group for the retreat.", isMe: false, name: "Admin" },
+                { text: "Has anyone seen the schedule?", isMe: true, name: "You" },
+                { text: "Check the pinned post.", isMe: false, name: "Sarah" }
+            ]
+        },
+        "Staff Orientation": {
+            status: "8 participants • 1 online",
+            messages: [
+                { text: "Mark: Setup complete in Hall A", isMe: false, name: "Mark" },
+                { text: "Great, I'm heading there now.", isMe: true, name: "You" }
+            ]
+        },
+        "Sarah Jenkins (Manager)": {
+            status: "Online",
+            messages: [
+                { text: "Hi team, everyone ready for the main stage tech check?", isMe: false, name: "Sarah" },
+                { text: "Please make sure the wireless mics are fully charged.", isMe: false, name: "Sarah" }
+            ]
+        },
+        "Mark Thompson (Staff)": {
+            status: "Last seen 5m ago",
+            messages: [
+                { text: "I'll be there in 15 minutes.", isMe: false, name: "Mark" }
+            ]
+        },
+        "Emily Chen (Manager)": {
+            status: "Do not disturb",
+            messages: [
+                { text: "Great job on the venue walkthrough.", isMe: false, name: "Emily" }
+            ]
+        }
+    };
+
+    // --- 2. STATE ---
+    let currentChatName = "Summer Retreat 2024";
+
+    // --- 3. SELECTORS ---
+    const messageInput = document.querySelector('textarea');
+    const sendButton = document.querySelector('footer button.bg-resortly-teal');
+    const chatContainer = document.querySelector('main .overflow-y-auto');
+    const headerTitle = document.querySelector('header h2');
+    const headerStatus = document.querySelector('header p.text-xs');
+    
+    // Select ALL sidebar buttons (Events & Direct Messages)
+    const sidebarButtons = document.querySelectorAll('aside button, section button');
+
+    // --- 4. RENDER FUNCTION (The Painter) ---
+    function renderMessages() {
+        chatContainer.innerHTML = ''; // Clear screen
+        
+        // Get data safely
+        const data = chatDatabase[currentChatName] || { messages: [] };
+
+        // Loop through messages
+        data.messages.forEach(msg => {
+            let html;
+            if (msg.isMe) {
+                // MY MESSAGE (Teal, Right)
+                html = `
+                    <div class="flex gap-4 justify-end fade-in mb-6">
+                        <div class="max-w-2xl">
+                            <div class="flex items-baseline justify-end gap-2 mb-1">
+                                <span class="text-[10px] text-slate-500">Just now</span>
+                                <span class="font-bold text-sm text-resortly-text">You</span>
+                            </div>
+                            <div class="bg-resortly-teal text-white rounded-xl rounded-tr-none p-4 text-sm shadow-md shadow-resortly-teal/20">
+                                ${msg.text}
+                            </div>
+                            <div class="flex justify-end mt-1">
+                                <span class="material-icons-round text-resortly-teal text-xs">done_all</span>
+                            </div>
+                        </div>
+                    </div>`;
+            } else {
+                // THEIR MESSAGE (Grey, Left)
+                html = `
+                    <div class="flex gap-4 max-w-2xl fade-in mb-6">
+                        <div class="w-9 h-9 bg-slate-200 rounded-full flex items-center justify-center shrink-0">
+                            <span class="material-icons-round text-slate-400 text-sm">person</span>
+                        </div>
+                        <div>
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <span class="font-bold text-sm text-resortly-text">${msg.name}</span>
+                                <span class="text-[10px] text-slate-500">Just now</span>
+                            </div>
+                            <div class="bg-white rounded-xl rounded-tl-none p-4 text-sm text-resortly-text shadow-sm border border-slate-200">
+                                ${msg.text}
+                            </div>
+                        </div>
+                    </div>`;
+            }
+            chatContainer.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Scroll to bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // --- 5. INTERACTION FUNCTIONS ---
+
+    function switchChat(clickedButton) {
+        // Get name from button
+        const nameElement = clickedButton.querySelector('.font-semibold');
+        if (!nameElement) return; // Safety check
+        
+        const newName = nameElement.innerText.trim(); 
+
+        // Update State
+        currentChatName = newName;
+
+        // Update Header
+        headerTitle.innerText = newName;
+        if (chatDatabase[newName]) {
+            headerStatus.innerText = chatDatabase[newName].status;
+        }
+
+        // Update Sidebar Visuals
+        sidebarButtons.forEach(btn => {
+            btn.classList.remove('bg-resortly-teal-light', 'border-l-4', 'border-resortly-teal');
+            btn.classList.add('hover:bg-slate-50'); 
+        });
+
+        clickedButton.classList.remove('hover:bg-slate-50');
+        clickedButton.classList.add('bg-resortly-teal-light', 'border-l-4', 'border-resortly-teal');
+
+        renderMessages();
+    }
+
+    function handleSendMessage() {
+        const text = messageInput.value.trim();
+        if (text === "") return;
+
+        // Save to Database
+        if (!chatDatabase[currentChatName]) {
+            chatDatabase[currentChatName] = { messages: [], status: "Online" };
+        }
+        
+        chatDatabase[currentChatName].messages.push({
+            text: text,
+            isMe: true,
+            name: "You"
+        });
+
+        renderMessages();
+        messageInput.value = "";
+    }
+
+    // --- 6. EVENT LISTENERS ---
+    
+    sendButton.addEventListener('click', handleSendMessage);
+    
+    messageInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    });
+
+    // Attach click to all sidebar buttons
+    sidebarButtons.forEach(button => {
+        button.addEventListener('click', () => switchChat(button));
+    });
+
+    // --- 7. START ---
+    // Trigger a click on the first active button to initialize
+    const firstActive = document.querySelector('button.bg-resortly-teal-light');
+    if(firstActive) {
+        switchChat(firstActive);
+    } else {
+        renderMessages();
+    }
+
+    // --- SEARCH BAR FUNCTIONALITY ---
+    
+    // 1. Select the search box
+    // We look for the input that has type="text"
+    const searchBar = document.querySelector('input[type="text"]');
+
+    // 2. Select ONLY the people/events list
+    // (We don't want to accidentally hide the dashboard icons on the far left!) - remember again for laterr
+    const chatButtons = document.querySelectorAll('section button');
+
+    // 3. Listen for typing
+    searchBar.addEventListener('input', (e) => {
+        // Get what the user typed and convert to lowercase (so "Mark" and "mark" both work)
+        const typedText = e.target.value.toLowerCase();
+
+        chatButtons.forEach(button => {
+            // Get the name inside the button
+            const name = button.innerText.toLowerCase();
+
+            // Check: Does the name contain the typed text?
+            if (name.includes(typedText)) {
+                button.style.display = "flex"; // Show it
+            } else {
+                button.style.display = "none"; // Hide it
+            }
+        });
+    });
+
+    // --- 8. ADVANCED UI INTERACTIONS (Popups & Menus) ---
+
+    function setupIconInteractions() {
+        const allButtons = document.querySelectorAll('button');
+
+        // 1. CREATE HIDDEN ELEMENTS (We build these in JS so they are ready to use) - need to remember that alsoo 
+        
+        // A. File Input (For attachments)
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.style.display = 'none'; // Keep it invisible
+        document.body.appendChild(fileInput);
+
+        // B. Emoji Picker Container
+        const emojiPicker = document.createElement('div');
+        emojiPicker.className = 'absolute bottom-20 left-8 bg-white shadow-xl rounded-lg border border-slate-200 p-2 grid grid-cols-4 gap-2 hidden';
+        emojiPicker.innerHTML = `
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">😊</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">👍</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">🎉</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">❤️</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">😂</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">🔥</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">😭</button>
+            <button class="text-xl hover:bg-slate-100 p-2 rounded">👀</button>
+        `;
+        document.body.appendChild(emojiPicker);
+
+        // C. Settings Dropdown
+        // --- C. Settings Dropdown (SMARTER VERSION) ---
+        const settingsMenu = document.createElement('div');
+        settingsMenu.className = 'absolute top-16 right-4 bg-white shadow-xl rounded-lg border border-slate-200 w-56 hidden z-50 overflow-hidden';
+        
+        // We create the HTML for the buttons
+        settingsMenu.innerHTML = `
+            <div class="p-3 border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider">Group Settings</div>
+            <button id="btn-mute" class="w-full text-left px-4 py-3 text-sm text-resortly-text hover:bg-slate-50 transition-colors flex items-center gap-2">
+                <span class="material-icons-round text-slate-400 text-base">notifications</span>
+                Mute Notifications
+            </button>
+            <button id="btn-media" class="w-full text-left px-4 py-3 text-sm text-resortly-text hover:bg-slate-50 transition-colors flex items-center gap-2">
+                <span class="material-icons-round text-slate-400 text-base">perm_media</span>
+                View Media & Files
+            </button>
+            <button id="btn-leave" class="w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-red-50 transition-colors flex items-center gap-2 border-t border-slate-100">
+                <span class="material-icons-round text-red-400 text-base">logout</span>
+                Leave Group
+            </button>
+        `;
+        document.body.appendChild(settingsMenu);
+
+        // --- ATTACH LISTENERS TO THE MENU BUTTONS ---
+
+        // 1. MUTE NOTIFICATIONS
+        settingsMenu.querySelector('#btn-mute').addEventListener('click', () => {
+            // Toggle Mute State
+            const chatData = chatDatabase[currentChatName];
+            chatData.muted = !chatData.muted; // Flip true/false
+
+            if (chatData.muted) {
+                alert(`Notifications muted for "${currentChatName}"`);
+                document.querySelector('#btn-mute span').innerText = 'notifications_off'; // Change icon
+            } else {
+                alert(`Notifications active for "${currentChatName}"`);
+                document.querySelector('#btn-mute span').innerText = 'notifications'; // Change icon back
+            }
+            settingsMenu.classList.add('hidden'); // Close menu
+        });
+
+        // 2. VIEW MEDIA (Finds files in chat history)
+        settingsMenu.querySelector('#btn-media').addEventListener('click', () => {
+            // Filter messages that have files (we check if text contains "Sent a file")
+            // Note: In a real app, we'd have a specific "type: 'file'" property. - remember for later
+            // For now, let's pretend and show a nice modal.
+            
+            const mediaModal = document.createElement('div');
+            mediaModal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-[60] fade-in';
+            mediaModal.innerHTML = `
+                <div class="bg-white rounded-xl w-96 max-h-[80vh] flex flex-col shadow-2xl">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+                        <h3 class="font-bold text-resortly-text">Media & Files</h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-slate-400 hover:text-red-500">
+                            <span class="material-icons-round">close</span>
+                        </button>
+                    </div>
+                    <div class="p-4 overflow-y-auto flex-1 space-y-3">
+                        <div class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer border border-slate-100">
+                            <div class="w-10 h-10 bg-red-50 text-red-500 flex items-center justify-center rounded">
+                                <span class="material-icons-round">picture_as_pdf</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-resortly-text">VIP_Seating_v2.pdf</p>
+                                <p class="text-xs text-slate-400">1.2 MB • Yesterday</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg cursor-pointer border border-slate-100">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-500 flex items-center justify-center rounded">
+                                <span class="material-icons-round">image</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-resortly-text">Lobby_Design.jpg</p>
+                                <p class="text-xs text-slate-400">2.4 MB • Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(mediaModal);
+            settingsMenu.classList.add('hidden');
+        });
+
+        // 3. LEAVE GROUP (Destructive Action)
+        settingsMenu.querySelector('#btn-leave').addEventListener('click', () => {
+            if (confirm(`Are you sure you want to leave "${currentChatName}"? This will remove the chat.`)) {
+                // A. Remove from Database
+                delete chatDatabase[currentChatName];
+
+                // B. Remove the Button from Sidebar
+                const allSidebarButtons = document.querySelectorAll('section button');
+                allSidebarButtons.forEach(btn => {
+                    if (btn.innerText.includes(currentChatName)) {
+                        btn.remove(); // Remove HTML element
+                    }
+                });
+
+                // C. Switch to the next available chat (or first one)
+                const remainingKeys = Object.keys(chatDatabase);
+                if (remainingKeys.length > 0) {
+                    const firstButton = document.querySelector('section button');
+                    if(firstButton) firstButton.click(); // Click the first one remaining
+                } else {
+                    // If no chats left
+                    document.querySelector('main .overflow-y-auto').innerHTML = '<div class="p-10 text-center text-slate-400">No conversations selected</div>';
+                    document.querySelector('header h2').innerText = "Resortly";
+                }
+            }
+            settingsMenu.classList.add('hidden');
+        });
+
+        // 2. ATTACH LISTENERS TO BUTTONS
+
+        allButtons.forEach(btn => {
+            const icon = btn.querySelector('.material-icons-round');
+            if (!icon) return;
+            const iconName = icon.innerText.trim();
+
+            // --- ATTACHMENT (Plus Icon) ---
+            if (iconName === 'add_circle_outline') {
+                btn.addEventListener('click', () => {
+                    fileInput.click(); // Trigger the invisible file input
+                });
+            }
+
+            // --- EMOJI (Smiley Face) ---
+            if (iconName === 'sentiment_satisfied_alt') {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Stop click from closing immediately
+                    emojiPicker.classList.toggle('hidden'); // Show/Hide
+                });
+            }
+
+            // --- SETTINGS (Three Dots) ---
+            if (iconName === 'more_vert') {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    settingsMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- ADD PEOPLE (Person Add) ---
+            if (iconName === 'person_add') {
+                btn.addEventListener('click', () => {
+                    // Create a pretty Modal (Overlay)
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 fade-in';
+                    modal.innerHTML = `
+                        <div class="bg-white rounded-xl p-6 w-80 shadow-2xl transform scale-100 transition-all">
+                            <h3 class="font-bold text-lg mb-4 text-resortly-text">Add People</h3>
+                            <input type="text" placeholder="Search by name..." class="w-full border border-slate-200 rounded-lg p-2 mb-4 text-sm focus:ring-2 focus:ring-resortly-teal/50 outline-none">
+                            <div class="flex justify-end gap-2">
+                                <button class="px-4 py-2 text-sm text-slate-500 hover:bg-slate-100 rounded-lg" onclick="this.closest('.fixed').remove()">Cancel</button>
+                                <button class="px-4 py-2 text-sm bg-resortly-teal text-white rounded-lg hover:opacity-90" onclick="alert('Invite sent!'); this.closest('.fixed').remove()">Invite</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                });
+            }
+             // --- SEARCH IN CHAT ---
+             if (iconName === 'search') {
+                btn.addEventListener('click', () => {
+                   const searchBar = document.createElement('div');
+                   searchBar.className = 'absolute top-20 right-8 bg-white shadow-lg p-2 rounded-lg border border-slate-200 flex gap-2 fade-in z-40';
+                   searchBar.innerHTML = `
+                        <input type="text" placeholder="Find in chat..." class="text-sm p-1 outline-none text-resortly-text">
+                        <button class="text-slate-400 hover:text-resortly-teal">
+                            <span class="material-icons-round text-sm">arrow_upward</span>
+                        </button>
+                        <button class="text-slate-400 hover:text-resortly-teal">
+                            <span class="material-icons-round text-sm">arrow_downward</span>
+                        </button>
+                        <button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()">
+                            <span class="material-icons-round text-sm">close</span>
+                        </button>
+                   `;
+                   document.querySelector('main').appendChild(searchBar);
+                   searchBar.querySelector('input').focus();
+                });
+            }
+        });
+
+        // 3. LISTENERS TO HANDLE "ACTION"
+        
+        // Handle Emoji Clicking
+        emojiPicker.querySelectorAll('button').forEach(emojiBtn => {
+            emojiBtn.addEventListener('click', () => {
+                messageInput.value += emojiBtn.innerText;
+                emojiPicker.classList.add('hidden'); // Hide after picking
+                messageInput.focus();
+            });
+        });
+
+        // Handle File Selection
+        fileInput.addEventListener('change', (e) => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                // Add a "System Message" to chat saying file was uploaded
+                const fileHTML = `
+                    <div class="flex gap-4 justify-end fade-in mb-6">
+                        <div class="max-w-2xl">
+                             <div class="flex items-baseline justify-end gap-2 mb-1">
+                                <span class="font-bold text-sm text-resortly-text">You</span>
+                            </div>
+                            <div class="bg-resortly-teal text-white rounded-xl rounded-tr-none p-3 text-sm shadow-md flex items-center gap-3">
+                                <div class="bg-white/20 p-2 rounded">
+                                    <span class="material-icons-round text-white">description</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-xs">Sent a file</p>
+                                    <p class="text-xs opacity-80">${fileName}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                document.querySelector('main .overflow-y-auto').insertAdjacentHTML('beforeend', fileHTML);
+                document.querySelector('main .overflow-y-auto').scrollTop = 100000;
+            }
+        });
+
+        // Close menus when clicking outside
+        window.addEventListener('click', () => {
+            emojiPicker.classList.add('hidden');
+            settingsMenu.classList.add('hidden');
+        });
+    }
+
+    // Run it!
+    setupIconInteractions();
+   
+</script>
+</body></html>
